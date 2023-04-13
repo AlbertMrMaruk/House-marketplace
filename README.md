@@ -34,6 +34,6 @@ npm start
 npm run build
 ```
 
-## Опубликованный проект в Netlify:
+## Опубликованный проект в Vercel:
 
-https://merry-griffin-3e7a89.netlify.app/
+https://house-marketplace-gold-five.vercel.app
