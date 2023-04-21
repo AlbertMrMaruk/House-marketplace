@@ -12,6 +12,7 @@ import { db } from "../firebase.config";
 import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+
 function EditListing() {
   const [listing, setListing] = useState({});
   const [formData, setFormData] = useState({
@@ -46,11 +47,10 @@ function EditListing() {
     discountedPrice,
     lat,
     lng,
-    address,
     imageUrls,
   } = formData;
   const [loading, setLoading] = useState(false);
-  const [geolocationEnabled, setGeolocationEnabled] = useState(false);
+  const geolocationEnabled = useState(false);
   const navigate = useNavigate();
   const auth = getAuth();
   useEffect(() => {
@@ -75,7 +75,7 @@ function EditListing() {
       }
     };
     fetchListing();
-  }, []);
+  }, [params.listingId, listing, auth.currentUser.uid, navigate]);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -84,7 +84,7 @@ function EditListing() {
         navigate("/sign-in");
       }
     });
-  }, []);
+  });
   const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -103,12 +103,12 @@ function EditListing() {
         uploadTask.on(
           "state_changed",
           (snapshot) => {
-            // Observe state change events such as progress, pause, and resume
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log("Upload is " + progress + "% done");
             switch (snapshot.state) {
+              default:
+                return;
               case "paused":
                 console.log("Upload is paused");
                 break;
@@ -118,13 +118,9 @@ function EditListing() {
             }
           },
           (error) => {
-            // Handle unsuccessful uploads
             reject(error);
           },
           () => {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               resolve(downloadURL);
             });
@@ -157,10 +153,7 @@ function EditListing() {
       userRef: auth.currentUser.uid,
     };
     !offer && delete listingCop.discountedPrice;
-    const listingRef = await updateDoc(
-      doc(db, "listings", params.listingId),
-      listingCop
-    );
+    await updateDoc(doc(db, "listings", params.listingId), listingCop);
     setLoading(false);
     toast.success("Listing Updated");
     navigate(`/category/${type}/${params.listingId}`);

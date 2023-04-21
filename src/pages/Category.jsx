@@ -13,6 +13,7 @@ import {
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
+
 function Category() {
   const params = useParams();
   const [listings, setListings] = useState([]);
@@ -47,7 +48,7 @@ function Category() {
       }
     };
     getListings();
-  }, []);
+  });
   //Pagination / Load More
   const onGetMoreListings = async () => {
     try {

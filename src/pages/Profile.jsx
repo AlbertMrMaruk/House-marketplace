@@ -7,7 +7,6 @@ import {
   orderBy,
   limit,
 } from "firebase/firestore";
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
@@ -77,7 +76,7 @@ function Profile() {
       setLoading(false);
     };
     getListings();
-  }, []);
+  });
   const onDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
       await deleteDoc(doc(db, "listings", id));

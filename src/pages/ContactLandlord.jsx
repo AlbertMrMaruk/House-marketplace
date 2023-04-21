@@ -4,6 +4,7 @@ import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
+
 function ContactLandlord() {
   const [loading, setLoading] = useState(true);
   const param = useParams();
@@ -22,7 +23,7 @@ function ContactLandlord() {
       setLoading(false);
     };
     getUser();
-  }, []);
+  });
 
   return (
     <div className="pageContainer">

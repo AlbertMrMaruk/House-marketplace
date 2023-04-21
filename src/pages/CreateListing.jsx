@@ -12,6 +12,7 @@ import { db } from "../firebase.config";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 function CreateListing() {
   const [formData, setFormData] = useState({
     type: "rent",
@@ -44,7 +45,7 @@ function CreateListing() {
     imageUrls,
   } = formData;
   const [loading, setLoading] = useState(false);
-  const [geolocationEnabled, setGeolocationEnabled] = useState(false);
+  const geolocationEnabled = false;
   const navigate = useNavigate();
   const auth = getAuth();
   useEffect(() => {
@@ -55,7 +56,7 @@ function CreateListing() {
         navigate("/sign-in");
       }
     });
-  }, []);
+  });
   const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -82,6 +83,8 @@ function CreateListing() {
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log("Upload is " + progress + "% done");
             switch (snapshot.state) {
+              default:
+                break;
               case "paused":
                 console.log("Upload is paused");
                 break;

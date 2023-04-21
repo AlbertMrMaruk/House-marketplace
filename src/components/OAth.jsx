@@ -1,5 +1,4 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { db } from "../firebase.config";
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
@@ -36,7 +35,7 @@ function OAth() {
     <div className="socialLogin">
       <p>Sign {location.pathname.includes("in") ? "In" : "Up"} with</p>
       <button className="socialIconDiv" onClick={onGoogleClick}>
-        <img src={googleIcon} className="socialIconImg" />
+        <img src={googleIcon} alt="Google Auth" className="socialIconImg" />
       </button>
     </div>
   );

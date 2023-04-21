@@ -12,6 +12,7 @@ import {
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
+
 function Offers() {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
