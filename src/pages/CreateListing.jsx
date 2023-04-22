@@ -56,7 +56,7 @@ function CreateListing() {
         navigate("/sign-in");
       }
     });
-  });
+  }, []);
   const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -77,8 +77,6 @@ function CreateListing() {
         uploadTask.on(
           "state_changed",
           (snapshot) => {
-            // Observe state change events such as progress, pause, and resume
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
             const progress =
               (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log("Upload is " + progress + "% done");
@@ -94,13 +92,9 @@ function CreateListing() {
             }
           },
           (error) => {
-            // Handle unsuccessful uploads
             reject(error);
           },
           () => {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               resolve(downloadURL);
             });
