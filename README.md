@@ -54,3 +54,8 @@
 ## Опубликованный проект в Vercel:
 
 https://house-marketplace-gold-five.vercel.app
+
+## Производительность Lighthouse
+
+<img width="1438" alt="Снимок экрана 2023-04-22 в 22 23 55" src="https://user-images.githubusercontent.com/63596175/233802857-3e329c2b-de11-4c8f-91a5-6189663072b7.png">
+
