@@ -24,7 +24,15 @@ function Slider() {
         querySnap.forEach((el) => {
           listingsArr.push({
             id: el.id,
-            data: el.data(),
+            data: {
+              ...el.data(),
+              imageUrls: el
+                .data()
+                .imageUrls.map(
+                  (el) =>
+                    `https://ik.imagekit.io/nlwqb04m7/o/` + el.split("/").at(-1)
+                ),
+            },
           });
         });
         setListings(listingsArr);

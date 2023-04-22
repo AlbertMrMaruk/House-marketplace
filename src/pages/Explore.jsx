@@ -10,8 +10,6 @@ function Explore() {
         <p className="pageHeader">Explore</p>
       </header>
       <main>
-        {/* Slider */}
-
         <Slider />
 
         <p className="exploreCategoryHeading">Categories</p>
@@ -20,7 +18,7 @@ function Explore() {
             <img
               src={rentCategoryImage}
               className="exploreCategoryImg"
-              alt=""
+              alt="Rent category"
             />
             <p className="exploreCategoryName">Places for rent</p>
           </Link>
@@ -28,7 +26,7 @@ function Explore() {
             <img
               src={sellCategoryImage}
               className="exploreCategoryImg"
-              alt=""
+              alt="Sale category"
             />
             <p className="exploreCategoryName">Places for sell</p>
           </Link>

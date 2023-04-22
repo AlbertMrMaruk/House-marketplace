@@ -22,9 +22,7 @@ function Category() {
   useEffect(() => {
     const getListings = async () => {
       try {
-        //Get a referee
         const docsRef = collection(db, "listings");
-        // Create a query
         const q = query(
           docsRef,
           where("type", "==", params.type),
@@ -48,14 +46,14 @@ function Category() {
       }
     };
     getListings();
-  });
+  }, []);
   //Pagination / Load More
   const onGetMoreListings = async () => {
     try {
       //Get a referee
       const docsRef = collection(db, "listings");
       // Create a query
-      console.log(lastListing);
+
       const q = query(
         docsRef,
         where("type", "==", params.type),

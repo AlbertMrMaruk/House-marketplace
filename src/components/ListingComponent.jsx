@@ -13,7 +13,10 @@ function ListingComponent({ listing, id, onEdit, onDelete }) {
         className="categoryListingLink"
       >
         <img
-          src={listing.imageUrls[0]}
+          src={
+            `https://ik.imagekit.io/nlwqb04m7/o/tr:h-500,w-500/` +
+            listing.imageUrls[0].split("/").at(-1)
+          }
           className="categoryListingImg"
           alt={listing.name}
         />

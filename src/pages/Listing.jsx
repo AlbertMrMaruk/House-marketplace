@@ -24,12 +24,15 @@ function Listing() {
       const listingRef = doc(db, "listings", param.id);
       const listing = await getDoc(listingRef);
       if (listing.exists()) {
-        setListing(listing.data());
+        setListing({
+          ...listing.data(),
+          imageUrls: listing.data().imageUrls,
+        });
         setLoading(false);
       }
     };
     getListing();
-  });
+  }, []);
   if (loading) return <Spinner />;
 
   return (

@@ -50,7 +50,7 @@ function EditListing() {
     imageUrls,
   } = formData;
   const [loading, setLoading] = useState(false);
-  const geolocationEnabled = useState(false);
+  const geolocationEnabled = false;
   const navigate = useNavigate();
   const auth = getAuth();
   useEffect(() => {
@@ -75,7 +75,7 @@ function EditListing() {
       }
     };
     fetchListing();
-  }, [params.listingId, listing, auth.currentUser.uid, navigate]);
+  }, []);
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -84,7 +84,7 @@ function EditListing() {
         navigate("/sign-in");
       }
     });
-  });
+  }, []);
   const onSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
